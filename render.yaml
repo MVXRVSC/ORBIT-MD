@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: orbit-md-bot
+    env: node
+    buildCommand: npm install
+    startCommand: node archivo.js
+
