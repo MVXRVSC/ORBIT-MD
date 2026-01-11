@@ -67,7 +67,7 @@ ORBIT-MD/
 ```bash
 pkg update -y
 pkg install git nodejs -y
-git clone https://github.com/TU-USUARIO/ORBIT-MD
+git clone https://github.com/MVXRVSC/ORBIT-MD/tree/6c0f9314fd0cd9d292b64366a4a2aa1b20ef4f25)
 cd ORBIT-MD
 npm install
 npm start
