@@ -3,6 +3,8 @@ import { useMultiFileAuthState } from "@whiskeysockets/baileys"
 import Pino from "pino"
 import { config } from "./config.js"
 import handler from "./handler.js"
+import { loadDB, saveDB } from "./lib/database.js"
+global.db = loadDB()
 
 export default async function startOrbit() {
   const { state, saveCreds } = await useMultiFileAuthState(config.sessionName)
@@ -20,6 +22,9 @@ export default async function startOrbit() {
     if (!msg.message) return
     await handler(sock, msg)
   })
+  
+import { saveDB } from "./lib/database.js"
+saveDB(global.db)
 
   console.log(`🛰️ ${config.botName} iniciado correctamente`)
 }
