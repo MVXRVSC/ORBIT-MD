@@ -1,7 +1,35 @@
 {
-  "name": "orbit-md-bot",
-  "description": "Bot ORBIT-MD con menú QR / número",
-  "scripts": { "start": "node archivo.js" },
-  "env": { "NODE_ENV": "production" }
+  "name": "ORBIT-MD",
+  "description": "Bot de WhatsApp con menú QR y sesión por número, diseñado para administración y entretenimiento.",
+  "repository": "https://github.com/YourUsername/ORBIT-MD",
+  "logo": "https://telegra.ph/file/3f00e26dcd5dcd09a68a1.jpg",
+  "keywords": [
+    "bot",
+    "whatsapp",
+    "whatsapp-bot",
+    "orbit-md",
+    "qr",
+    "session",
+    "admin",
+    "fun"
+  ],
+  "buildpacks": [
+    { "url": "heroku/nodejs" },
+    { "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest" },
+    { "url": "https://github.com/clhuang/heroku-buildpack-webp-binaries.git" },
+    { "url": "https://github.com/bogini/heroku-buildpack-graphicsmagick" }
+  ],
+  "env": {
+    "PORT": {
+      "description": "Puerto del servidor web para mostrar QR",
+      "value": "5000"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "Free"
+    }
+  },
+  "stack": "heroku-22"
 }
-
