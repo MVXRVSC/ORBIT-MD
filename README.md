@@ -54,7 +54,7 @@ apt update -y && yes | apt upgrade && pkg install -y bash wget mpv && wget -O - 
 termux-setup-storage
 apt-get update -y && apt-get upgrade -y
 pkg install -y git nodejs ffmpeg imagemagick yarn
-git clone https://github.com/YourUsername/ORBIT-MD && cd ORBIT-MD
+git clone https://github.com/SLAYERS-MD/ORBIT-MD.git && cd ORBIT-MD
 yarn install && npm install
 npm update
 npm start
