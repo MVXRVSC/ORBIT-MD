@@ -7,12 +7,11 @@ export default {
   run: async (sock, m, { args }) => {
     const db = global.db
     const gid = m.chat
-    db.groups[gid] = db.groups[gid] || {}
-    db.groups[gid].antilink = args[0] === "on"
+    const chat = db.data.chats[gid] ||= {}
+    chat.antiLink = args[0] === "on"
 
     await sock.sendMessage(gid, {
-      text: `🔗 Anti-Link ${db.groups[gid].antilink ? "ACTIVADO" : "DESACTIVADO"}`
+      text: `🔗 Anti-Link ${chat.antiLink ? "ACTIVADO" : "DESACTIVADO"}`
     })
   }
 }
-

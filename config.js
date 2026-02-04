@@ -63,6 +63,13 @@ global.wm = 'ORBIT-MD | ORBIT TEAM 🫶'
 global.wm2 = '                   ORBIT-MD ✨\n> *Administrador de sesiones y funciones avanzadas*'
 global.des = 'Bot de WhatsApp con QR y sesión por número.'
 
+// Configuración base para plugins simples
+global.config = {
+  botName: global.packname,
+  prefix: ['.', '!', '/', '#'],
+  antiPrivate: false
+}
+
 // Librerías
 global.vs = 'V2'
 global.library = 'Baileys'

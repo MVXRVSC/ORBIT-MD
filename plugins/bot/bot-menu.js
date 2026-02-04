@@ -8,6 +8,7 @@ export default {
 🛰️ ${config.botName}
 ━━━━━━━━━━━━
 • .menu
+• .info
 • .ping
 • .sticker
 • .kick

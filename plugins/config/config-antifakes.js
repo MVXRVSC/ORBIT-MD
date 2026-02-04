@@ -7,12 +7,11 @@ export default {
   run: async (sock, m, { args }) => {
     const db = global.db
     const gid = m.chat
-    db.groups[gid] = db.groups[gid] || {}
-    db.groups[gid].antifake = args[0] === "on"
+    const chat = db.data.chats[gid] ||= {}
+    chat.antiFake = args[0] === "on"
 
     await sock.sendMessage(gid, {
-      text: `🛡️ Anti-Fake ${db.groups[gid].antifake ? "ACTIVADO" : "DESACTIVADO"}`
+      text: `🛡️ Anti-Fake ${chat.antiFake ? "ACTIVADO" : "DESACTIVADO"}`
     })
   }
 }
-

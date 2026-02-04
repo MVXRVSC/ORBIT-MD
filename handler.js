@@ -47,6 +47,7 @@ export async function handler(chatUpdate) {
     detect: false,
     delete: true,
     antiLink: false,
+    antiFake: false,
     antiTraba: true,
     modoadmin: false,
     nsfw: true,
@@ -84,14 +85,25 @@ export async function handler(chatUpdate) {
         await plugin.all.call(this, m, { chatUpdate })
       }
 
+      if (plugin.custom && typeof plugin.run === 'function') {
+        await plugin.run.call(this, this, m, { conn: this, chatUpdate })
+      }
+
       if (!plugin.command) continue
       if (!m.text) continue
 
       let prefix = plugin.customPrefix || global.prefix
-      let match = m.text.startsWith(prefix)
-      if (!match) continue
+      let usedPrefix = ''
+      if (prefix instanceof RegExp) {
+        const match = m.text.match(prefix)
+        if (!match) continue
+        usedPrefix = match[0]
+      } else {
+        if (!m.text.startsWith(prefix)) continue
+        usedPrefix = prefix
+      }
 
-      let [cmd, ...args] = m.text.slice(prefix.length).trim().split(/\s+/)
+      let [cmd, ...args] = m.text.slice(usedPrefix.length).trim().split(/\s+/)
       cmd = cmd.toLowerCase()
 
       let accepted = Array.isArray(plugin.command)
@@ -106,10 +118,17 @@ export async function handler(chatUpdate) {
       if (plugin.group && !m.isGroup) return
       if (plugin.admin && !m.isAdmin) return
 
-      await plugin.call(this, m, {
+      const text = args.join(' ')
+      const handlerFn = typeof plugin.call === 'function' ? plugin.call : plugin.run
+      if (typeof handlerFn !== 'function') continue
+
+      await handlerFn.call(this, this, m, {
         args,
+        text,
         command: cmd,
-        usedPrefix: prefix,
+        usedPrefix,
+        prefix: usedPrefix,
+        config: global.config || {},
         conn: this,
         isOwner,
         isMods,

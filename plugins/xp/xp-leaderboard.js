@@ -3,7 +3,7 @@ export default {
   tags: "xp",
 
   run: async (sock, m) => {
-    const users = Object.entries(global.db.users)
+    const users = Object.entries(global.db.data.users)
       .sort((a, b) => b[1].xp - a[1].xp)
       .slice(0, 10)
 

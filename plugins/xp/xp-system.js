@@ -7,7 +7,7 @@ export default {
     if (!m.chat.endsWith("@g.us")) return
 
     const db = global.db
-    const user = db.users[m.sender] ||= { xp: 0, level: 0 }
+    const user = db.data.users[m.sender] ||= { xp: 0, level: 0 }
 
     const oldLevel = user.level
     addXP(user, 5)
@@ -20,4 +20,3 @@ export default {
     }
   }
 }
-
